@@ -1,0 +1,9 @@
+
+class Solution:
+    def validSquare(self, p1: List[int], p2: List[int], p3: List[int], p4: List[int]) -> bool:
+        def distance(P, Q):
+            return ((P[0] - Q[0])**2 + (P[1] - Q[1])**2)**2
+    
+        distlist = [distance(p1, p2),distance(p2, p3),  distance(p3, p4), distance(p1, p3), distance(p1, p4), distance(p2, p4)]
+        distlist.sort()       
+        return  distlist[0] == distlist[1] == distlist[2] == distlist[3] and distlist[0]*(2**2)==distlist[4] == distlist[5] and distlist[0]<distlist[4]
