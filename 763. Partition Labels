@@ -1,16 +1,15 @@
 class Solution:
     def partitionLabels(self, S: str) -> List[int]:        
-        ret=[]
-        temp=""
-        j=0
-        for i in range(len(S)-1):
-            temp=S[j:i+1]
-            if(any([True for x in list(temp) if x in S[i+1:]])):
-                pass
-            else:
-                ret.append(len(temp))
-                temp=""
-                j=i+1
-        ret.append(len(temp)+1)
-        return ret
+         dic = {}
+        for i, char in enumerate(S):
+            dic[char] = i
+        res = []
+        currLen = 0
+        hi = 0
+        for i, char in enumerate(S):
+            hi = max(hi, dic[char])
+            if i == hi:
+                res.append(i - currLen + 1)
+                currLen = i+1
+        return res
         
